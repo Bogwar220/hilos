@@ -6,6 +6,6 @@ public class Contador {
 	
 	public static int clientes = 0;
 	public static boolean ok = true;
-	public static String[] arrayClientes = new String[CLIENTES];
+	public static String[] arrayClientes = new String[CLIENTES+1];
 	public static int mesas = 1;
 }

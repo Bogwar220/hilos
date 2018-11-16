@@ -27,23 +27,20 @@ public class Mesas extends Thread{
 					Contador.mesas++;
 				}
 				
-				else if(Contador.mesas <= Contador.CLIENTES / 2) {
+				else if(Contador.mesas <= Contador.CLIENTES / 2) {					
 					
-					Contador.arrayClientes[Contador.clientes]="Cliente"+Contador.clientes;
 					Controlador.mesa_3( Contador.arrayClientes[Contador.clientes] + ".\n");
 					Contador.mesas++;
 				}
 				
-				else if(Contador.mesas <= Contador.CLIENTES  / 4 * 3) {
+				else if(Contador.mesas <= Contador.CLIENTES  / 4 * 3) {					
 					
-					Contador.arrayClientes[Contador.clientes]="Cliente"+Contador.clientes;
 					Controlador.mesa_4( Contador.arrayClientes[Contador.clientes] + ".\n");
 					Contador.mesas++;
 				}
 				
-				else if(Contador.mesas <= Contador.CLIENTES) {
+				else if(Contador.mesas <= Contador.CLIENTES) {					
 					
-					Contador.arrayClientes[Contador.clientes]="Cliente"+Contador.clientes;
 					Controlador.mesa_1(Contador.arrayClientes[Contador.clientes] + ".\n");
 					Contador.mesas++;
 				}		

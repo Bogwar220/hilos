@@ -35,7 +35,7 @@ public class Clientes extends Thread {
 			
 			Controlador.borrar();
 			
-			if(Contador.clientes == 20)
+			if(Contador.clientes == Contador.CLIENTES)
 				Contador.ok = false;
 
 			semaClientes.release();
