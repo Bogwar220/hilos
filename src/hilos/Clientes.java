@@ -25,11 +25,15 @@ public class Clientes extends Thread {
 			semaClientes.acquire();
 			
 			Contador.clientes++;
-			Controlador.entrada("Ha llegado el cliente "+Contador.clientes+".\n");			
+			Contador.arrayClientes[Contador.clientes]="Cliente " + String.valueOf(Contador.clientes);
+			Controlador.entrada("Ha llegado el "+Contador.arrayClientes[Contador.clientes]+".\n");	
+			
 			
 			sleep(100);	
 			
-			mesas.start();			
+			mesas.start();	
+			
+			Controlador.borrar();
 			
 			if(Contador.clientes == 20)
 				Contador.ok = false;

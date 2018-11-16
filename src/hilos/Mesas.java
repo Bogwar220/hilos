@@ -21,27 +21,30 @@ public class Mesas extends Thread{
 			
 			semMesas.acquire();			
 			
-				if(Contador.mesas <= Contador.CLIENTES / 4) {
+				if(Contador.mesas <= Contador.CLIENTES / 4) {					
 					
-					Controlador.mesa_2("Cliente" + Contador.clientes + ".\n");
+					Controlador.mesa_2(Contador.arrayClientes[Contador.clientes] + ".\n");
 					Contador.mesas++;
 				}
 				
 				else if(Contador.mesas <= Contador.CLIENTES / 2) {
 					
-					Controlador.mesa_3("Cliente" + Contador.clientes + ".\n");
+					Contador.arrayClientes[Contador.clientes]="Cliente"+Contador.clientes;
+					Controlador.mesa_3( Contador.arrayClientes[Contador.clientes] + ".\n");
 					Contador.mesas++;
 				}
 				
 				else if(Contador.mesas <= Contador.CLIENTES  / 4 * 3) {
 					
-					Controlador.mesa_4("Cliente" + Contador.clientes + ".\n");
+					Contador.arrayClientes[Contador.clientes]="Cliente"+Contador.clientes;
+					Controlador.mesa_4( Contador.arrayClientes[Contador.clientes] + ".\n");
 					Contador.mesas++;
 				}
 				
 				else if(Contador.mesas <= Contador.CLIENTES) {
 					
-					Controlador.mesa_1("Cliente" + Contador.clientes + ".\n");
+					Contador.arrayClientes[Contador.clientes]="Cliente"+Contador.clientes;
+					Controlador.mesa_1(Contador.arrayClientes[Contador.clientes] + ".\n");
 					Contador.mesas++;
 				}		
 				

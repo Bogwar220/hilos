@@ -32,4 +32,9 @@ public class Controlador {
 		
 		vista.lblMesa_4.setText(vista.lblMesa_4.getText() + text);
 	}
+	
+	public static void borrar() {
+		
+		vista.lblEntrada.setText("");
+	}
 }
