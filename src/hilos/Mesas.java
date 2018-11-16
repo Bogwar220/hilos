@@ -7,13 +7,16 @@ import restaurante.Controlador;
 
 public class Mesas extends Thread{
 	
-	private Semaphore semMesas;
+	private Semaphore semMesas;	
 	
 	public Mesas(Semaphore semMesas) {
 		
 		this.semMesas = semMesas;
 	}
 
+	Semaphore semPlatos = new Semaphore(5);
+	Platos platos = new Platos(semPlatos);
+	
 	
 	public void run() {
 			
@@ -45,6 +48,7 @@ public class Mesas extends Thread{
 					Contador.mesas++;
 				}		
 				
+				platos.start();
 			
 			semMesas.release();
 		} catch (InterruptedException e) {
