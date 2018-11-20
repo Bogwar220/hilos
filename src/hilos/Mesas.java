@@ -17,6 +17,9 @@ public class Mesas extends Thread{
 	Semaphore semPlatos = new Semaphore(5);
 	Platos platos= new Platos(semPlatos);
 	
+	Semaphore semPlato2 = new Semaphore (Contador.CAMARERO);
+	Plato2 plato2 = new Plato2(semPlato2);
+	
 	
 	public void run() {
 			
@@ -34,7 +37,15 @@ public class Mesas extends Thread{
 			if(Contador.asientos == Contador.CAMARERO / 4 || Contador.asientos == Contador.CAMARERO / 2 || Contador.asientos == Contador.CAMARERO / 4*3 || Contador.asientos == Contador.CAMARERO) {				
 				platos.start();	
 				sleep(100);
-			}	
+			}
+			
+			if(Contador.ok==true) {
+				Contador.ok=false;
+				Contador.asientos = 1;
+				plato2.start();
+				sleep(100);
+			}
+			
 			
 			semMesas.release();
 			

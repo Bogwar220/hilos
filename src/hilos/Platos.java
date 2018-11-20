@@ -52,6 +52,7 @@ public class Platos extends Thread{
 					Controlador.pintarMesas(i);
 					sleep(100);
 				}
+				Contador.ok=true;
 				break;
 			}	
 			
