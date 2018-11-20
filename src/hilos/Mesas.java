@@ -15,42 +15,29 @@ public class Mesas extends Thread{
 	}
 
 	Semaphore semPlatos = new Semaphore(5);
-	Platos platos = new Platos(semPlatos);
+	Platos platos= new Platos(semPlatos);
 	
 	
 	public void run() {
 			
 		try {	
 			
-			semMesas.acquire();			
+			semMesas.acquire();	
 			
-				if(Contador.mesas <= Contador.CLIENTES / 4) {					
-					
-					Controlador.mesa_2(Contador.arrayClientes[Contador.clientes] + ".\n");
-					Contador.mesas++;
-				}
-				
-				else if(Contador.mesas <= Contador.CLIENTES / 2) {					
-					
-					Controlador.mesa_3( Contador.arrayClientes[Contador.clientes] + ".\n");
-					Contador.mesas++;
-				}
-				
-				else if(Contador.mesas <= Contador.CLIENTES  / 4 * 3) {					
-					
-					Controlador.mesa_4( Contador.arrayClientes[Contador.clientes] + ".\n");
-					Contador.mesas++;
-				}
-				
-				else if(Contador.mesas <= Contador.CLIENTES) {					
-					
-					Controlador.mesa_1(Contador.arrayClientes[Contador.clientes] + ".\n");
-					Contador.mesas++;
-				}		
-				
-				platos.start();
+			Contador.asientos++;			
+			Controlador.rellenarMesas("",Contador.arrayClientes[Contador.clientes],"\n");
+			Controlador.pintarMesas(Contador.asientos);
+			
+			sleep(100);
+			Controlador.rellenarMesas("Primer plato ",Contador.arrayMesa[Contador.clientes],"");
+			
+			if(Contador.asientos == Contador.CAMARERO / 4 || Contador.asientos == Contador.CAMARERO / 2 || Contador.asientos == Contador.CAMARERO / 4*3 || Contador.asientos == Contador.CAMARERO) {				
+				platos.start();	
+				sleep(100);
+			}	
 			
 			semMesas.release();
+			
 		} catch (InterruptedException e) {
 			
 			e.printStackTrace();

@@ -14,7 +14,7 @@ public class Clientes extends Thread {
 		this.semaClientes = semaClientes;
 	}
 	
-	Semaphore semMesas = new Semaphore(Contador.CLIENTES);
+	Semaphore semMesas = new Semaphore(Contador.CAMARERO );
 	
 	Mesas mesas = new Mesas(semMesas);
 		
@@ -27,18 +27,16 @@ public class Clientes extends Thread {
 			Contador.clientes++;
 			Contador.arrayClientes[Contador.clientes]="Cliente " + String.valueOf(Contador.clientes);
 			Controlador.entrada("Ha llegado el "+Contador.arrayClientes[Contador.clientes]+".\n");	
+						
+			sleep(100);				
 			
+			if(Contador.asientos< Contador.CAMARERO) {
+				mesas.start();			
+			}
 			
-			sleep(100);	
-			
-			mesas.start();	
-			
-			Controlador.borrar();
-			
-			if(Contador.clientes == Contador.CLIENTES)
-				Contador.ok = false;
-
 			semaClientes.release();
+			
+			//Controlador.borrarEntrada();
 			
 			sleep(100);
 		} catch (InterruptedException e) {

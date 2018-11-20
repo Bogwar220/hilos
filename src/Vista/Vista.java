@@ -1,4 +1,4 @@
-package restaurante;
+package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -36,22 +36,22 @@ public class Vista extends JFrame {
 		
 		lblMesa_4 = new JTextArea("");
 		lblMesa_4.setBorder(new TitledBorder(null, "Mesa 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		lblMesa_4.setBounds(45, 42, 106, 179);
+		lblMesa_4.setBounds(45, 42, 151, 179);
 		contentPane.add(lblMesa_4);
 		
 		lblMesa_1 = new JTextArea("");
 		lblMesa_1.setBorder(new TitledBorder(null, "Mesa 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		lblMesa_1.setBounds(198, 42, 127, 179);
+		lblMesa_1.setBounds(254, 42, 151, 179);
 		contentPane.add(lblMesa_1);
 		
 		lblMesa_2 = new JTextArea("");
 		lblMesa_2.setBorder(new TitledBorder(null, "Mesa 3", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		lblMesa_2.setBounds(45, 275, 106, 179);
+		lblMesa_2.setBounds(45, 275, 151, 179);
 		contentPane.add(lblMesa_2);
 		
 		lblMesa_3 = new JTextArea("");
 		lblMesa_3.setBorder(new TitledBorder(null, "Mesa 4", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		lblMesa_3.setBounds(198, 275, 127, 179);
+		lblMesa_3.setBounds(254, 275, 151, 179);
 		contentPane.add(lblMesa_3);
 		
 		setVisible(true);
