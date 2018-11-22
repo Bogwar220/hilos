@@ -17,12 +17,7 @@ public class Mesas extends Thread{
 	Semaphore semPlatos = new Semaphore(5);
 	Platos platos= new Platos(semPlatos);
 	
-	Semaphore semPlato2 = new Semaphore (Contador.CAMARERO);
-	Plato2 plato2 = new Plato2(semPlato2);
-	
-	
-	public void run() {
-			
+	public void run() {			
 		try {	
 			
 			semMesas.acquire();	
@@ -30,22 +25,16 @@ public class Mesas extends Thread{
 			Contador.asientos++;			
 			Controlador.rellenarMesas("",Contador.arrayClientes[Contador.clientes],"\n");
 			Controlador.pintarMesas(Contador.asientos);
+			Contador.platos++;
 			
-			sleep(100);
-			Controlador.rellenarMesas("Primer plato ",Contador.arrayMesa[Contador.clientes],"");
-			
-			if(Contador.asientos == Contador.CAMARERO / 4 || Contador.asientos == Contador.CAMARERO / 2 || Contador.asientos == Contador.CAMARERO / 4*3 || Contador.asientos == Contador.CAMARERO) {				
-				platos.start();	
+
+			if(Contador.platos == 5) {				
+				platos.start();
+				Contador.platos=1;
 				sleep(100);
 			}
 			
-			if(Contador.ok==true) {
-				Contador.ok=false;
-				Contador.asientos = 1;
-				plato2.start();
-				sleep(100);
-			}
-			
+			sleep(100);			
 			
 			semMesas.release();
 			

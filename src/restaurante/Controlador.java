@@ -55,22 +55,40 @@ public class Controlador {
 	
 	public static void borrar(int num) {
 		
-		switch (num) {
-		case 1:
-			vista.lblMesa_1.setText("");
-			break;
-		case 2:
-			vista.lblMesa_2.setText("");
-			break;
-		case 3:
-			vista.lblMesa_3.setText("");
-			break;
-		case 4:
-			vista.lblMesa_4.setText("");
-			break;
-		default :
+		if(comprobar()) {
+			switch (num) {
+			case 1:
+				vista.lblMesa_1.setText("");
+				break;
+			case 2:
+				vista.lblMesa_2.setText("");
+				break;
+			case 3:
+				vista.lblMesa_3.setText("");
+				break;
+			case 4:
+				vista.lblMesa_4.setText("");
+				break;
+			default :
+				break;
+			}	
+		}
+	}	
+	
+	public static boolean comprobar() {
+		
+		boolean algo = false;
+		switch (Contador.asientos) {
+		case 5:			
+		case 10:			
+		case 15:			
+		case 20:
+			algo=true;
+		default:
+			algo=false;
 			break;
 		}
 		
+		return algo;
 	}
 }

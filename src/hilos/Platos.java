@@ -7,57 +7,30 @@ import restaurante.Contador;
 import restaurante.Controlador;
 
 public class Platos extends Thread{
-
+	
 	private Semaphore semPlatos;
 	
 	public Platos(Semaphore semPlatos) {
-		
 		this.semPlatos = semPlatos;
 	}
 	
-	Semaphore semComida = new Semaphore(1);
-	//Plato1 comida1 = new Plato1(semComida);
+	Semaphore semPlato2 = new Semaphore (5);
+	Plato2 plato2 = new Plato2(semPlato2);
 	
 	public void run() {
 		
-		try {
-			semPlatos.acquire();	
-						
-			sleep(100);		
-			switch (Contador.asientos) {
-			case Contador.CAMARERO /4 :
-				Controlador.borrar(1);
-				for (int i=1; i<=Contador.CAMARERO/4;i++) {
-					Controlador.pintarMesas(i);
-					sleep(100);
-				}	
-				break;
-			case Contador.CAMARERO /2 :
-				Controlador.borrar(2);
-				for (int i=Contador.CAMARERO/4+1; i<=Contador.CAMARERO/2;i++) {
-					Controlador.pintarMesas(i);
-					sleep(100);
-				}
-				break;
-			case (Contador.CAMARERO /4)*3:
-				Controlador.borrar(3);
-				for(int i=Contador.CAMARERO/2+1;i<=(Contador.CAMARERO/4)*3;i++) {
-					Controlador.pintarMesas(i);
-					sleep(100);
-				}
-				break;
-			case Contador.CAMARERO:
-				Controlador.borrar(4);
-				for(int i=((Contador.CAMARERO/4)*3)+1;i<=Contador.CAMARERO;i++) {
-					Controlador.pintarMesas(i);
-					sleep(100);
-				}
-				Contador.ok=true;
-				break;
-			}	
+		try {					
+			Controlador.rellenarMesas("Primer plato ",Contador.arrayMesa[Contador.asientos],"");			
+			Contador.platos++;
+			Controlador.pintarMesas(Contador.asientos);			
 			
-			sleep(100);
-			semPlatos.release();
+			if(Contador.asientos == Contador.CAMARERO / 4 || Contador.asientos == Contador.CAMARERO / 2 || Contador.asientos == Contador.CAMARERO / 4*3 || Contador.asientos == Contador.CAMARERO) {				
+				plato2.start();
+				Contador.platos=1;
+				sleep(100);
+			}
+			
+			Controlador.pintarMesas(Contador.asientos);						
 		} catch (InterruptedException e) {
 			
 			e.printStackTrace();

@@ -11,10 +11,10 @@ public class Plato2 extends Thread{
 	
 	public Plato2(Semaphore semPlato2) {
 		this.semPlato2 = semPlato2;
-	}
+	}	
 	
-	Semaphore semPlatos = new Semaphore(5);
-	Platos platos = new Platos(semPlatos);
+	Semaphore semPostre = new Semaphore(5);
+	Postre postre = new Postre(semPostre);
 	
 	public void run() {
 		
@@ -22,12 +22,15 @@ public class Plato2 extends Thread{
 			semPlato2.acquire();
 			
 			Contador.asientos++;
-			Controlador.rellenarMesas("Segundo plato ",Contador.arrayMesa[Contador.clientes],"");
+			Controlador.rellenarMesas("Segundo plato ",Contador.arrayMesa[Contador.asientos],"");
+			Contador.platos++;
+			Controlador.pintarMesas(Contador.asientos);		
 			
-			if(Contador.asientos == Contador.CAMARERO / 4 || Contador.asientos == Contador.CAMARERO / 2 || Contador.asientos == Contador.CAMARERO / 4*3 || Contador.asientos == Contador.CAMARERO) {				
-				platos.start();			
+			if(Contador.platos == 5) {				
+				postre.start();	
+				Contador.platos=1;
 				sleep(100);
-			}
+			}			
 			
 			semPlato2.release();
 		} catch (InterruptedException e) {
