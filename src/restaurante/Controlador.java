@@ -8,6 +8,7 @@ import Vista.Vista;
 public class Controlador {
 
 	static Vista vista = new Vista();
+	private static String mensajeBorrado ="\n\n\n***Se van***\n\n\n";
 	
 	public Controlador(Vista vista) {
 		this.vista = vista;
@@ -23,72 +24,53 @@ public class Controlador {
 		textArea.setText(textArea.getText() + text);
 	}
 	
-	public static void pintarMesas(int num) {		
+	public static void pintarMesas(int num, String[] array) {		
 		
-		if(num <= Contador.CAMARERO / 4) {		
+		if(Contador.asientos <= Contador.CAMARERO / 4) {		
 		
-			vista.lblMesa_1.setText(vista.lblMesa_1.getText() + Contador.arrayMesa[num]);
+			vista.lblMesa_1.setText(vista.lblMesa_1.getText() +array[num]);
 		}
 		
-		else if(num <= Contador.CAMARERO / 2) {				
+		else if(Contador.asientos <= Contador.CAMARERO / 2) {				
 			
 			
-			vista.lblMesa_2.setText(vista.lblMesa_2.getText() + Contador.arrayMesa[num]);
+			vista.lblMesa_2.setText(vista.lblMesa_2.getText() + array[num]);
 		}
 		
-		else if(num <= Contador.CAMARERO  / 4 * 3) {				
+		else if(Contador.asientos <= Contador.CAMARERO  / 4 * 3) {				
 			
-			vista.lblMesa_3.setText(vista.lblMesa_3.getText() + Contador.arrayMesa[num]);
+			vista.lblMesa_3.setText(vista.lblMesa_3.getText() + array[num]);
 		}
 		
-		else if(num <= Contador.CAMARERO) {				
+		else if(Contador.asientos <= Contador.CAMARERO) {				
 			
 			
-			vista.lblMesa_4.setText(vista.lblMesa_4.getText() + Contador.arrayMesa[num]);
+			vista.lblMesa_4.setText(vista.lblMesa_4.getText() + array[num]);
 		}			
 	}
 	
-	public static void rellenarMesas(String text, String arrayText, String salto) {
+	public static void rellenarMesas(String text, String arrayText, String salto,String[] array, int num) {
 		
-		Contador.arrayMesa[Contador.asientos] = text + arrayText + salto;
+		array[num] = text + arrayText + salto;
 	}	
 	
-	public static void borrar(int num) {
-		
-		if(comprobar()) {
-			switch (num) {
-			case 1:
-				vista.lblMesa_1.setText("");
-				break;
-			case 2:
-				vista.lblMesa_2.setText("");
-				break;
-			case 3:
-				vista.lblMesa_3.setText("");
-				break;
-			case 4:
-				vista.lblMesa_4.setText("");
-				break;
-			default :
-				break;
-			}	
-		}
-	}	
-	
-	public static boolean comprobar() {
-		
-		boolean algo = false;
-		switch (Contador.asientos) {
-		case 5:			
-		case 10:			
-		case 15:			
-		case 20:
-			algo=true;
-		default:
-			algo=false;
+	public static void borrar(int num) {	
+		switch (num) {
+		case 1:
+			vista.lblMesa_1.setText(mensajeBorrado);
 			break;
-		}
+		case 2:
+			vista.lblMesa_2.setText(mensajeBorrado);
+			break;
+		case 3:
+			vista.lblMesa_3.setText(mensajeBorrado);
+			break;
+		case 4:
+			vista.lblMesa_4.setText(mensajeBorrado);
+			break;
+		default :
+			break;
+		}	
 		
-		return algo;
-	}
+	}	
 }

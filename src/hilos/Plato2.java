@@ -7,7 +7,8 @@ import restaurante.Controlador;
 
 public class Plato2 extends Thread{
 
-	private Semaphore semPlato2;
+	private Semaphore semPlato2;	
+	private String[] arrayPlato2 = new String[5];
 	
 	public Plato2(Semaphore semPlato2) {
 		this.semPlato2 = semPlato2;
@@ -16,21 +17,22 @@ public class Plato2 extends Thread{
 	Semaphore semPostre = new Semaphore(5);
 	Postre postre = new Postre(semPostre);
 	
+	
 	public void run() {
 		
+		int platos=0;
 		try {
 			semPlato2.acquire();
 			
-			Contador.asientos++;
-			Controlador.rellenarMesas("Segundo plato ",Contador.arrayMesa[Contador.asientos],"");
-			Contador.platos++;
-			Controlador.pintarMesas(Contador.asientos);		
-			
-			if(Contador.platos == 5) {				
+			sleep(100);	
+			platos++;	
+				if(!Contador.arrayMesa[Contador.asientos].isEmpty()) {
+				Controlador.rellenarMesas("2º plato ",Contador.arrayMesa[Contador.asientos],"",arrayPlato2,platos);			
+				Controlador.pintarMesas(platos, arrayPlato2);			
 				postre.start();	
-				Contador.platos=1;
-				sleep(100);
-			}			
+				sleep(1000);
+			}
+		
 			
 			semPlato2.release();
 		} catch (InterruptedException e) {

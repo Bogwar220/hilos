@@ -14,28 +14,20 @@ public class Mesas extends Thread{
 		this.semMesas = semMesas;
 	}
 
-	Semaphore semPlatos = new Semaphore(5);
-	Platos platos= new Platos(semPlatos);
+	Semaphore semPlato1 = new Semaphore(5);
+	Plato1 plato1= new Plato1(semPlato1);
 	
 	public void run() {			
-		try {	
-			
+		try {		
 			semMesas.acquire();	
 			
-			Contador.asientos++;			
-			Controlador.rellenarMesas("",Contador.arrayClientes[Contador.clientes],"\n");
-			Controlador.pintarMesas(Contador.asientos);
-			Contador.platos++;
+			sleep(100);
+			Contador.asientos++;					
+			Controlador.rellenarMesas("",Contador.arrayClientes[Contador.clientes],"\n", Contador.arrayMesa, Contador.asientos);
+			Controlador.pintarMesas(Contador.asientos,Contador.arrayMesa);
 			
-
-			if(Contador.platos == 5) {				
-				platos.start();
-				Contador.platos=1;
-				sleep(100);
-			}
-			
-			sleep(100);			
-			
+			plato1.start();		
+			sleep(1000);
 			semMesas.release();
 			
 		} catch (InterruptedException e) {
